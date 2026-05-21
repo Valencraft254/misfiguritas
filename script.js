@@ -35,9 +35,11 @@ let completas=0;
 
 jugadores.forEach(j=>{
 
-if(!j.nombre.toLowerCase().includes(texto) &&
-   !j.numero.toLowerCase().includes(texto) &&
-   !j.pais.toLowerCase().includes(texto)){
+if(
+!j.nombre.toLowerCase().includes(texto) &&
+!j.numero.toLowerCase().includes(texto) &&
+!j.pais.toLowerCase().includes(texto)
+){
 return;
 }
 
@@ -61,7 +63,10 @@ claseCaja="sinCompletar";
 }
 
 let div=document.createElement("div");
-div.className="jugador "+claseCaja;
+
+let paisClase = j.pais.replace(/\s/g,'-');
+
+div.className = `jugador ${claseCaja} borde-${paisClase}`;
 
 div.innerHTML=`
 
@@ -78,11 +83,14 @@ ${textoEstado}
 </span>
 
 <div class="botones">
+
 <button class="tengo">✅</button>
 <button class="falta">❌</button>
+
 </div>
 
 </div>
+
 `;
 
 const btns = div.querySelectorAll("button");
