@@ -1,132 +1,100 @@
 body{
-
 margin:0;
+font-family:Arial;
 background:#f2f2f2;
-font-family:Arial,sans-serif;
-
 }
 
 .contenedor{
-
 max-width:700px;
 margin:auto;
 padding:20px;
-
 }
 
 h1{
-
 text-align:center;
-
 }
 
-input{
-
+input,select{
 width:100%;
 padding:12px;
 margin-bottom:10px;
 border-radius:10px;
 border:1px solid #ccc;
 box-sizing:border-box;
-
 }
 
 .agregar{
-
 background:white;
 padding:15px;
 border-radius:10px;
-margin-bottom:20px;
-
+margin-bottom:15px;
 }
 
 #agregarBtn{
-
 width:100%;
 padding:12px;
 border:none;
 border-radius:10px;
 cursor:pointer;
-
 }
 
 .stats{
-
 background:white;
-padding:15px;
+padding:10px;
 border-radius:10px;
-margin-bottom:20px;
-
+margin-bottom:15px;
+display:flex;
+justify-content:space-between;
 }
 
 .jugador{
-
 background:white;
 padding:15px;
 border-radius:10px;
 margin-bottom:10px;
-
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 border:3px solid transparent;
-
 }
 
 .completado{
-
 border-color:#2ecc71;
-
 }
 
 .sinCompletar{
-
 border-color:#e74c3c;
-
 }
 
 .estado{
-
 font-weight:bold;
 padding:5px;
-margin-right:10px;
 border-radius:5px;
-
+margin-right:8px;
 }
 
 .estado-tengo{
-
 color:#2ecc71;
-
 }
 
 .estado-falta{
-
 color:#e74c3c;
-
 }
 
 .botones button{
-
 padding:8px;
 border:none;
 margin-left:5px;
 border-radius:8px;
 cursor:pointer;
-
 }
 
 .tengo{
-
 background:#2ecc71;
 color:white;
-
 }
 
 .falta{
-
 background:#e74c3c;
 color:white;
-
 }
