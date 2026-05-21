@@ -1,32 +1,34 @@
-let jugadores=
+let jugadores =
 JSON.parse(
-localStorage.getItem(
-"jugadores"
-)
-)||[];
+localStorage.getItem("jugadores")
+) || [];
 
-let estados=
+let estados =
 JSON.parse(
-localStorage.getItem(
-"estados"
-)
-)||{};
+localStorage.getItem("estados")
+) || {};
 
 function guardarDatos(){
 
 localStorage.setItem(
 "jugadores",
-JSON.stringify(
-jugadores
-)
+JSON.stringify(jugadores)
 );
 
 localStorage.setItem(
 "estados",
-JSON.stringify(
-estados
-)
+JSON.stringify(estados)
 );
+
+}
+
+function cambiar(numero,estado){
+
+estados[numero]=estado;
+
+guardarDatos();
+
+render();
 
 }
 
@@ -39,9 +41,8 @@ document.getElementById(
 
 lista.innerHTML="";
 
-let texto=
-document
-.getElementById(
+const texto=
+document.getElementById(
 "buscar"
 )
 .value
@@ -53,12 +54,14 @@ jugadores.forEach(j=>{
 
 if(
 
-!j.nombre.toLowerCase()
+!j.nombre
+.toLowerCase()
 .includes(texto)
 
 &&
 
-!j.numero.toLowerCase()
+!j.numero
+.toLowerCase()
 .includes(texto)
 
 ){
@@ -67,53 +70,85 @@ return;
 
 }
 
+let estado=
+estados[j.numero];
+
 if(
-estados[
-j.numero
-]==="tengo"
+estado==="tengo"
 ){
 
 completas++;
 
 }
 
-lista.innerHTML+=`
+let div=
+document.createElement(
+"div"
+);
 
-<div class="jugador">
+div.className=
+"jugador";
+
+if(
+estado==="tengo"
+){
+
+div.classList.add(
+"completado"
+);
+
+}
+
+div.innerHTML=`
 
 <div>
-
 <b>${j.numero}</b>
-
 <br>
-
 ${j.nombre}
-
 </div>
 
 <div class="botones">
-
-<button
-class="tengo"
-onclick="cambiar('${j.numero}','tengo')">
-
+<button class="tengo">
 ✅
-
 </button>
 
-<button
-class="falta"
-onclick="cambiar('${j.numero}','falta')">
-
+<button class="falta">
 ❌
-
 </button>
-
-</div>
-
 </div>
 
 `;
+
+const botones=
+div.querySelectorAll(
+"button"
+);
+
+botones[0]
+.addEventListener(
+"click",
+()=>{
+cambiar(
+j.numero,
+"tengo"
+)
+}
+);
+
+botones[1]
+.addEventListener(
+"click",
+()=>{
+cambiar(
+j.numero,
+"falta"
+)
+}
+);
+
+lista.appendChild(
+div
+);
 
 });
 
@@ -129,19 +164,6 @@ jugadores.length;
 
 }
 
-function cambiar(
-numero,
-estado
-){
-
-estados[numero]=estado;
-
-guardarDatos();
-
-render();
-
-}
-
 document
 .getElementById(
 "agregarBtn"
@@ -153,40 +175,38 @@ document
 .getElementById(
 "numero"
 )
-.value;
+.value
+.trim();
 
 let nombre=
 document
 .getElementById(
 "nombre"
 )
-.value;
+.value
+.trim();
 
 if(
-!numero||
+!numero ||
 !nombre
 )return;
 
 jugadores.push({
 
-numero:numero,
-nombre:nombre
+numero,
+nombre
 
 });
 
 guardarDatos();
 
-document
-.getElementById(
+document.getElementById(
 "numero"
-)
-.value="";
+).value="";
 
-document
-.getElementById(
+document.getElementById(
 "nombre"
-)
-.value="";
+).value="";
 
 render();
 
