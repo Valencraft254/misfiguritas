@@ -1,28 +1,37 @@
-let jugadores =
+let jugadores=
 JSON.parse(
-localStorage.getItem("jugadores")
-) || [];
+localStorage.getItem(
+"jugadores"
+)
+)||[];
 
-let estados =
+let estados=
 JSON.parse(
-localStorage.getItem("estados")
-) || {};
+localStorage.getItem(
+"estados"
+)
+)||{};
 
 function guardarDatos(){
 
 localStorage.setItem(
 "jugadores",
-JSON.stringify(jugadores)
+JSON.stringify(
+jugadores)
 );
 
 localStorage.setItem(
 "estados",
-JSON.stringify(estados)
+JSON.stringify(
+estados)
 );
 
 }
 
-function cambiar(numero,estado){
+function cambiar(
+numero,
+estado
+){
 
 estados[numero]=estado;
 
@@ -71,13 +80,45 @@ return;
 }
 
 let estado=
-estados[j.numero];
+estados[
+j.numero
+];
+
+let textoEstado="";
+
+let claseEstado="";
+
+let claseCaja="";
 
 if(
 estado==="tengo"
 ){
 
+textoEstado=
+"TENGO";
+
+claseEstado=
+"estado-tengo";
+
+claseCaja=
+"completado";
+
 completas++;
+
+}
+
+if(
+estado==="falta"
+){
+
+textoEstado=
+"NO TENGO";
+
+claseEstado=
+"estado-falta";
+
+claseCaja=
+"sinCompletar";
 
 }
 
@@ -87,34 +128,42 @@ document.createElement(
 );
 
 div.className=
-"jugador";
-
-if(
-estado==="tengo"
-){
-
-div.classList.add(
-"completado"
-);
-
-}
+`jugador ${claseCaja}`;
 
 div.innerHTML=`
 
 <div>
+
 <b>${j.numero}</b>
+
 <br>
+
 ${j.nombre}
+
 </div>
 
+<div>
+
+<span class="estado ${claseEstado}">
+${textoEstado}
+</span>
+
 <div class="botones">
+
 <button class="tengo">
+
 ✅
+
 </button>
 
 <button class="falta">
+
 ❌
+
 </button>
+
+</div>
+
 </div>
 
 `;
@@ -128,10 +177,12 @@ botones[0]
 .addEventListener(
 "click",
 ()=>{
+
 cambiar(
 j.numero,
 "tengo"
 )
+
 }
 );
 
@@ -139,10 +190,12 @@ botones[1]
 .addEventListener(
 "click",
 ()=>{
+
 cambiar(
 j.numero,
 "falta"
 )
+
 }
 );
 
@@ -187,7 +240,7 @@ document
 .trim();
 
 if(
-!numero ||
+!numero||
 !nombre
 )return;
 
