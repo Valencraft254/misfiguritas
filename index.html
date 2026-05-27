@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MisFiguritas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+<h1>⚽ MisFiguritas</h1>
+
+<input id="buscar" type="text" placeholder="🔎 Buscar jugador o número">
+
+<div class="agregar">
+
+<select id="pais">
+<option value="">🌎 Selección</option>
+<option>Argentina</option>
+<option>Brasil</option>
+<option>Francia</option>
+<option>España</option>
+<option>Portugal</option>
+<option>Alemania</option>
+<option>Italia</option>
+<option>Inglaterra</option>
+<option>Países Bajos</option>
+<option>Bélgica</option>
+<option>México</option>
+<option>Estados Unidos</option>
+<option>Canadá</option>
+<option>Japón</option>
+<option>Corea del Sur</option>
+<option>Marruecos</option>
+<option>Uruguay</option>
+</select>
+
+<input id="numero" type="text" placeholder="Número">
+<input id="nombre" type="text" placeholder="Nombre del jugador">
+
+<button id="agregarBtn">➕ Agregar figurita</button>
+
+</div>
+
+<div class="stats">
+Completadas: <span id="completadas">0</span> |
+Total: <span id="total">0</span> |
+Porcentaje: <span id="porcentaje">0%</span>
+</div>
+
+<div id="lista"></div>
+
+</div>
+
+<script>
+function actualizarPorcentaje() {
+    const total = parseInt(document.getElementById("total").textContent) || 0;
+    const porcentaje = ((total / 980) * 100).toFixed(1);
+
+    document.getElementById("porcentaje").textContent = porcentaje + "%";
+}
+
+const observer = new MutationObserver(actualizarPorcentaje);
+
+observer.observe(document.getElementById("total"), {
+    childList: true
+});
+
+actualizarPorcentaje();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
